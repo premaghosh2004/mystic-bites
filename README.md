@@ -1,6 +1,6 @@
 🩸 Mystic Bites - A Vampire Diaries Themed Restaurant Website 🧛‍♀️
 
-Mystic Bites is a full-stack restaurant web application designed for vampire lovers and fans of *The Vampire Diaries*. Built as part of an internship project, it provides a stunning and immersive restaurant experience where users can:
+Mystic Bites is a MERN-stack restaurant web application designed for vampire lovers and fans of *The Vampire Diaries*. Built as part of an internship project, it provides a stunning and immersive restaurant experience where users can:
 
 - Explore a gothic-styled vampire menu
 - Reserve tables (aka "coffin tables") under the blood moon
