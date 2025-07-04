@@ -20,17 +20,6 @@ body {
   background-color: #8B0000;
 }
 
-.modern-home {
-  position: relative;
-  height: 100vh;
-  width: 100vw;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
-    url('/tvd1.jpg') center/cover no-repeat fixed;
-  overflow: hidden;
-  color: #fff;
-  font-family: 'Cinzel Decorative', cursive;
-}
 
 
 .particles-container {
@@ -43,85 +32,21 @@ body {
 }
 
 /* Floating Bats Animation */
-.floating-bats {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
 .modern-home {
   position: relative;
   height: 100vh;
   width: 100vw;
   background: 
-    linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), /* reduced opacity */
     url('/tvd-cover.jpg') center/cover no-repeat fixed;
   overflow: hidden;
   color: #fff;
   font-family: 'Cinzel Decorative', cursive;
+  backdrop-filter: blur(0.5px); /* optional slight blur */
 }
 
-.bat {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%238B0000" d="M256 0c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128S326.7 0 256 0zm0 224c-53 0-96-43-96-96s43-96 96-96 96 43 96 96-43 96-96 96z"/></svg>');
-  background-size: contain;
-  opacity: 0.7;
-  animation: floatBat 15s linear infinite;
-}
 
-.bat-1 {
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
 
-.bat-2 {
-  top: 60%;
-  left: 70%;
-  animation-delay: 5s;
-}
-
-.bat-3 {
-  top: 30%;
-  left: 50%;
-  animation-delay: 8s;
-}
-
-@keyframes floatBat {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(50px, 50px) rotate(90deg); }
-  50% { transform: translate(100px, 0) rotate(180deg); }
-  75% { transform: translate(50px, -50px) rotate(270deg); }
-  100% { transform: translate(0, 0) rotate(360deg); }
-}
-
-/* Blood Drips Animation */
-.blood-drips {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.blood-drip {
-  position: absolute;
-  width: 2px;
-  height: 100px;
-  background: linear-gradient(to bottom, #8B0000, transparent);
-  animation: dripFall 5s linear infinite;
-  transform-origin: top;
-}
-
-@keyframes dripFall {
-  0% { transform: translateY(-100px) scaleY(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(100vh) scaleY(1); opacity: 0; }
-}
 
 /* Glowing Candle */
 .candle-container {
@@ -463,9 +388,6 @@ body {
   animation: glowPulse 2s infinite alternate;
 }
 
-.blood-drop {
-  animation: bloodDrip 3s infinite;
-}
 
 .category-tabs {
   display: flex;

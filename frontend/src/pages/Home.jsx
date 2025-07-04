@@ -39,23 +39,7 @@ const Home = () => {
     <div className="modern-home">
       {/* Interactive Particle Background */}
       <div id="particles-js" className="particles-container"></div>
-      
-      {/* Floating Vampire Elements */}
-      <div className="floating-bats">
-        <div className="bat bat-1"></div>
-        <div className="bat bat-2"></div>
-        <div className="bat bat-3"></div>
-      </div>
 
-      {/* Animated Blood Drips */}
-      <div className="blood-drips">
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="blood-drip" style={{
-            left: `${10 + (i * 10)}%`,
-            animationDuration: `${5 + (i * 0.5)}s`
-          }}></div>
-        ))}
-      </div>
 
       {/* Glowing Candle */}
       <div className="candle-container">
