@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "/src/index.css";
-import api from '../api/axios';
 
-useEffect(() => {
-  api.get('/menu')
-    .then(res => setMenu(res.data))
-    .catch(err => console.error(err));
-}, []);
 
 export default function Menu() {
   const [menu, setMenu] = useState({

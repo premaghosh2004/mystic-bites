@@ -977,28 +977,3 @@ body, html {
     padding: 12px !important;
   }
 }
-
-.modern-title {
-  font-size: clamp(2rem, 5vw, 5rem);
-}
-@media (max-width: 768px) {
-  .modern-title {
-    font-size: 2rem;
-  }
-  
-  .modern-subtitle {
-    font-size: 1rem;
-  }
-
-  .category-tabs {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-}
-.modern-home {
-  min-height: 100dvh; /* dynamic viewport height */
-}
-img {
-  max-width: 100%;
-  height: auto;
-}
