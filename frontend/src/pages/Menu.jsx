@@ -16,7 +16,7 @@ export default function Menu() {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/menu");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/menu`);
         // Categorize items - modify based on your actual data structure
         const categorized = {
           starters: res.data.filter(item => item.category === "starter"),

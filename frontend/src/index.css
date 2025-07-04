@@ -977,3 +977,38 @@ body, html {
     padding: 12px !important;
   }
 }
+.modern-content {
+  padding: 2rem;
+  text-align: center;
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.modern-title {
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.modern-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin: 1rem 0;
+}
+
+.liquid-button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  border-radius: 1.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .modern-quote {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  .candle-container {
+    transform: scale(0.8);
+  }
+}
