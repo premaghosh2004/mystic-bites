@@ -918,3 +918,87 @@ body, html {
   color: inherit;         /* Inherits color from parent */
   display: inline-block;  /* Prevents underline from extra spacing */
 }
+/* ======================
+   RESPONSIVE BREAKPOINTS 
+   ====================== */
+
+/* Mobile (All pages) */
+@media (max-width: 767px) {
+  /* Global adjustments */
+  body {
+    font-size: 14px;
+  }
+
+  /* Home Page */
+  .modern-title {
+    font-size: 2.5rem !important;
+    line-height: 1.2;
+  }
+  
+  .modern-subtitle {
+    font-size: 1.1rem !important;
+    padding: 0 1rem;
+  }
+
+  /* Menu Page */
+  .menu-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  /* Navbar */
+  .nav-links {
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Forms */
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Tablet (All pages) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .modern-title {
+    font-size: 3.5rem !important;
+  }
+}
+
+/* Touch Device Enhancements */
+@media (hover: none) {
+  button, a, .nav-links a {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px !important;
+  }
+}
+
+.modern-title {
+  font-size: clamp(2rem, 5vw, 5rem);
+}
+@media (max-width: 768px) {
+  .modern-title {
+    font-size: 2rem;
+  }
+  
+  .modern-subtitle {
+    font-size: 1rem;
+  }
+
+  .category-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+.modern-home {
+  min-height: 100dvh; /* dynamic viewport height */
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
