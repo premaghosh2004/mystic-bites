@@ -19,6 +19,9 @@ Mystic Bites is a MERN-stack restaurant web application designed for vampire lov
 - ⚡ Animations, hover effects, glowing UI elements
 
 ---
+🌐 Live Demo
+https://mystic-bites.vercel.app/
+---
 
 🛠️ Tech Stack
 
@@ -69,14 +72,9 @@ TVD/
 
 ---
 
-🌐 Live Demo
-
-Coming soon on Vercel and Render...
-
----
 
 🤍 Made with Love (and Blood)
 
 By [Prema Ghosh](https://github.com/premaghosh2004) — TVD fan, coder, and vampire café creator.
 
-> “You want a love that consumes you…” — Damon Salvatore
+“You want a love that consumes you…” — Damon Salvatore
