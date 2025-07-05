@@ -26,9 +26,27 @@ export default function Reservations() {
     setError(null);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reservations`, form);
-      console.log("✅ Reservation successful:", response.data);
+      // Convert data types before sending
+      const payload = {
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        guests: Number(form.guests),
+        date: form.date,
+        time: form.time,
+        specialRequests: form.specialRequests.trim()
+      };
 
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/reservations`,
+        payload,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      console.log("✅ Reservation successful:", response.data);
       setSuccess(true);
       setForm({
         name: "",
@@ -38,138 +56,147 @@ export default function Reservations() {
         time: "",
         specialRequests: "",
       });
-
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
       console.error("❌ Reservation error:", err.response?.data || err.message);
-      setError("The night is dark... reservation failed. Try again later.");
+      setError(err.response?.data?.error || "The night is dark... reservation failed. Try again later.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="reservation-container px-4 md:px-8 py-10">
-      <div className="reservation-overlay max-w-3xl mx-auto bg-fogGray bg-opacity-20 backdrop-blur-md p-6 md:p-10 rounded-lg shadow-vampire">
-        <div className="reservation-content">
-          <h2 className="gothic text-3xl md:text-4xl text-blood text-center">BOOK YOUR COFFIN TABLE 🦇</h2>
-          <p className="reservation-subtitle italic text-white text-center mt-2 mb-6">
-            "We only serve after dark... reservations required"
-          </p>
+    <div className="reservation-container min-h-screen bg-gradient-to-b from-vampireBlack to-duskPurple py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <div className="reservation-overlay bg-fogGray/10 backdrop-blur-sm border border-bloodRed/30 rounded-xl shadow-lg shadow-bloodRed/20 p-6 sm:p-8 md:p-10">
+          <div className="reservation-content">
+            <h2 className="text-3xl sm:text-4xl font-gothic text-bloodRed text-center mb-2">
+              BOOK YOUR COFFIN TABLE <span className="text-2xl">🦇</span>
+            </h2>
+            <p className="text-boneWhite italic text-center mb-6 sm:mb-8">
+              "We only serve after dark... reservations required"
+            </p>
 
-          {success && (
-            <div className="reservation-success text-green-400 mt-4 text-center">
-              <p>🩸 Your table has been reserved under the blood moon!</p>
-              <p>You'll receive a raven confirmation shortly.</p>
-            </div>
-          )}
-
-          {error && <div className="reservation-error text-red-400 mt-4 text-center">{error}</div>}
-
-          <form onSubmit={handleSubmit} className="reservation-form space-y-6 mt-6">
-            <div className="form-group">
-              <label className="text-white">Full Name</label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="form-input w-full"
-                placeholder="Enter your full name"
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="text-white">Phone Number</label>
-              <input
-                type="tel"
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                required
-                pattern="[0-9]{10}"
-                className="form-input w-full"
-                placeholder="Enter your 10-digit phone number"
-              />
-            </div>
-
-            <div className="form-row grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="form-group">
-                <label className="text-white">Number of Victims</label>
-                <select
-                  name="guests"
-                  value={form.guests}
-                  onChange={handleChange}
-                  required
-                  className="form-input w-full"
-                >
-                  <option value="">Select</option>
-                  <option value="1">1 Vampire</option>
-                  <option value="2">2 Vampires</option>
-                  <option value="3">Coven (3-4)</option>
-                  <option value="5">Full Moon Gathering (5+)</option>
-                </select>
+            {success && (
+              <div className="reservation-success bg-green-900/30 border border-green-700 rounded-lg p-4 mb-6 text-green-300 text-center animate-fade-in">
+                <p className="font-medium">🩸 Your table has been reserved under the blood moon!</p>
+                <p className="text-sm mt-1">You'll receive a raven confirmation shortly.</p>
               </div>
+            )}
 
+            {error && (
+              <div className="reservation-error bg-red-900/30 border border-red-700 rounded-lg p-4 mb-6 text-red-300 text-center animate-fade-in">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="reservation-form space-y-4 sm:space-y-6">
               <div className="form-group">
-                <label className="text-white">Date</label>
+                <label className="block text-boneWhite mb-1 text-sm sm:text-base">Full Name</label>
                 <input
-                  type="date"
-                  name="date"
-                  value={form.date}
+                  type="text"
+                  name="name"
+                  value={form.name}
                   onChange={handleChange}
                   required
-                  min={new Date().toISOString().split("T")[0]}
-                  className="form-input w-full"
+                  className="w-full bg-black/40 border border-bloodRed/50 rounded-lg px-4 py-2 sm:py-3 text-boneWhite placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-bloodRed"
+                  placeholder="Enter your full name"
                 />
               </div>
 
-              <div className="form-group md:col-span-2">
-                <label className="text-white">Time After Dark</label>
+              <div className="form-group">
+                <label className="block text-boneWhite mb-1 text-sm sm:text-base">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  pattern="[0-9]{10}"
+                  className="w-full bg-black/40 border border-bloodRed/50 rounded-lg px-4 py-2 sm:py-3 text-boneWhite placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-bloodRed"
+                  placeholder="Enter your 10-digit phone number"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="form-group">
+                  <label className="block text-boneWhite mb-1 text-sm sm:text-base">Number of Victims</label>
+                  <select
+                    name="guests"
+                    value={form.guests}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-black/40 border border-bloodRed/50 rounded-lg px-4 py-2 sm:py-3 text-boneWhite focus:outline-none focus:ring-1 focus:ring-bloodRed"
+                  >
+                    <option value="">Select</option>
+                    <option value="1">1 Vampire</option>
+                    <option value="2">2 Vampires</option>
+                    <option value="3-4">Coven (3-4)</option>
+                    <option value="5+">Full Moon Gathering (5+)</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="block text-boneWhite mb-1 text-sm sm:text-base">Date</label>
+                  <input
+                    type="date"
+                    name="date"
+                    value={form.date}
+                    onChange={handleChange}
+                    required
+                    min={new Date().toISOString().split('T')[0]}
+                    className="w-full bg-black/40 border border-bloodRed/50 rounded-lg px-4 py-2 sm:py-3 text-boneWhite focus:outline-none focus:ring-1 focus:ring-bloodRed"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="block text-boneWhite mb-1 text-sm sm:text-base">Time After Dark</label>
                 <input
                   type="time"
                   name="time"
                   value={form.time}
                   onChange={handleChange}
                   required
-                  className="form-input w-full"
                   min="18:00"
                   max="03:00"
+                  className="w-full bg-black/40 border border-bloodRed/50 rounded-lg px-4 py-2 sm:py-3 text-boneWhite focus:outline-none focus:ring-1 focus:ring-bloodRed"
                 />
               </div>
-            </div>
 
-            <div className="form-group">
-              <label className="text-white">Special Blood Requests</label>
-              <textarea
-                name="specialRequests"
-                value={form.specialRequests}
-                onChange={handleChange}
-                className="form-input w-full"
-                placeholder="Allergies? Preferred blood type? Vampire dietary restrictions?"
-                rows="4"
-              ></textarea>
-            </div>
+              <div className="form-group">
+                <label className="block text-boneWhite mb-1 text-sm sm:text-base">Special Blood Requests</label>
+                <textarea
+                  name="specialRequests"
+                  value={form.specialRequests}
+                  onChange={handleChange}
+                  rows="4"
+                  className="w-full bg-black/40 border border-bloodRed/50 rounded-lg px-4 py-2 sm:py-3 text-boneWhite placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-bloodRed"
+                  placeholder="Allergies? Preferred blood type? Vampire dietary restrictions?"
+                ></textarea>
+              </div>
 
-            <div className="text-center">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="reservation-button bg-blood text-white py-3 px-6 rounded-lg mt-4 hover:bg-red-800 transition-all w-full sm:w-auto"
-              >
-                {isSubmitting ? (
-                  <span className="animate-pulse text-sm">🩸 Summoning Server...</span>
-                ) : (
-                  "RESERVE YOUR COFFIN"
-                )}
-              </button>
-            </div>
-          </form>
+              <div className="pt-2 text-center">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`reservation-button w-full sm:w-auto px-8 py-3 rounded-lg font-medium transition-all duration-300 ${isSubmitting 
+                    ? 'bg-bloodRed/70 cursor-not-allowed' 
+                    : 'bg-bloodRed hover:bg-crimsonRed shadow-lg hover:shadow-bloodRed/50'}`}
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <span className="animate-pulse">🩸</span> Summoning Reservation...
+                    </span>
+                  ) : (
+                    "RESERVE YOUR COFFIN"
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-

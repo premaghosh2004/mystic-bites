@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getReservations, addReservation } = require('../controllers/reservationController');
+const reservationController = require('../controllers/reservationController');
 
-router.get('/', getReservations);
-router.post('/', addReservation);
+// POST /api/reservations - Create new reservation
+router.post('/', reservationController.addReservation);
+
+// GET /api/reservations - Get all reservations
+router.get('/', reservationController.getReservations);
 
 module.exports = router;

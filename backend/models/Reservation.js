@@ -3,33 +3,45 @@ const mongoose = require('mongoose');
 const reservationSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    trim: true
+    required: [true, 'Name is required'],
+    trim: true,
+    maxlength: [100, 'Name cannot exceed 100 characters']
   },
   phone: {
     type: String,
-    required: true,
+    required: [true, 'Phone number is required'],
     trim: true,
-    match: [/^\d{10}$/, "Please enter a valid 10-digit phone number"]
+    validate: {
+      validator: function(v) {
+        return /^[0-9]{10,15}$/.test(v);
+      },
+      message: props => `${props.value} is not a valid phone number!`
+    }
   },
   guests: {
     type: Number,
-    required: true,
-    min: 1
+    required: [true, 'Number of guests is required'],
+    min: [1, 'At least 1 guest is required'],
+    max: [20, 'Maximum 20 guests allowed']
   },
   date: {
-    type: Date,
-    required: true
+    type: String,
+    required: [true, 'Date is required'],
+    match: [/^\d{4}-\d{2}-\d{2}$/, 'Please use YYYY-MM-DD format']
   },
   time: {
     type: String,
-    required: true
+    required: [true, 'Time is required'],
+    match: [/^\d{2}:\d{2}$/, 'Please use HH:MM format']
   },
   specialRequests: {
     type: String,
-    default: ""
+    maxlength: [500, 'Special requests cannot exceed 500 characters']
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
-}, { timestamps: true });
+});
 
-module.exports = mongoose.model("Reservation", reservationSchema);
-
+module.exports = mongoose.model('Reservation', reservationSchema);
