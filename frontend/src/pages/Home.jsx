@@ -50,25 +50,29 @@ const Home = () => {
       </div>
 
       {/* Main Content with GSAP Animations */}
-      <div className="modern-content">
-        <h1 className="modern-title" data-aos="fade-down" data-aos-duration="1000">
+      <div className="modern-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+        <h1
+  className="text-4xl sm:text-5xl md:text-6xl font-gothic text-crimsonRed mb-4"
+  data-aos="fade-down"
+  data-aos-duration="1000"
+>
           <span className="title-part-1">MYSTIC</span>
           <span className="title-part-2">BITES</span>
           <span className="title-highlight"></span>
         </h1>
         
-        <p className="modern-subtitle" data-aos="fade-up" data-aos-delay="300">
+        <p className="modern-subtitle text-sm sm:text-base md:text-lg text-boneWhite mb-6" data-aos="fade-up" data-aos-delay="300">
           Welcome to the ultimate <span className="glowing-text">Vampire Diaries</span>-themed restaurant in India
         </p>
         
-        <div className="modern-cta" data-aos="zoom-in" data-aos-delay="600">
-          <a href="/menu" className="liquid-button">
+        <div className="modern-cta mt-6 flex justify-center" data-aos="zoom-in" data-aos-delay="600">
+          <a href="/menu" className="liquid-button text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base bg-bloodRed hover:bg-crimsonRed transition duration-300 relative">
             <span>EXPLORE BLOOD MENU</span>
             <div className="liquid"></div>
           </a>
         </div>
         
-        <p className="modern-quote" data-aos="fade-up" data-aos-delay="900">
+        <p className="modern-quote mt-6 text-xs sm:text-sm md:text-base text-gray-300 italic" data-aos="fade-up" data-aos-delay="900">
           "You want a love that consumes you..." — Damon Salvatore
         </p>
       </div>
