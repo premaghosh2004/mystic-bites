@@ -38,7 +38,7 @@ body {
   width: 100vw;
   background: 
     linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), /* reduced opacity */
-    url('/tvd-cover.jpg') center/cover no-repeat fixed;
+    url('/tvd1.jpg') center/cover no-repeat fixed;
   overflow: hidden;
   color: #fff;
   font-family: 'Cinzel Decorative', cursive;
