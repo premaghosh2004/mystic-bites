@@ -29,6 +29,7 @@ export default function Reservations() {
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reservations`, form);
+      console.log("🧪 API URL:", import.meta.env.VITE_API_URL);
       console.log("✅ Reservation successful:", response.data);
 
       setSuccess(true);

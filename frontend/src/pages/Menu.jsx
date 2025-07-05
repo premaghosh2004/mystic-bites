@@ -17,13 +17,18 @@ export default function Menu() {
     const fetchMenu = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/menu`);
-        // Categorize items - modify based on your actual data structure
-        const categorized = {
-          starters: res.data.filter(item => item.category === "starter"),
-          mains: res.data.filter(item => item.category === "main"),
-          desserts: res.data.filter(item => item.category === "dessert"),
-          drinks: res.data.filter(item => item.category === "drink")
-        };
+       // ✅ CORRECT
+const items = Array.isArray(res.data) ? res.data
+             : Array.isArray(res.data.data) ? res.data.data
+             : [];
+
+const categorized = {
+  starters: items.filter(item => item.category === "starter"),
+  mains: items.filter(item => item.category === "main"),
+  desserts: items.filter(item => item.category === "dessert"),
+  drinks: items.filter(item => item.category === "drink")
+};
+console.log("Menu API response:", res.data);
         setMenu(categorized);
       } catch (err) {
         console.error("Bloody error:", err);

@@ -11,7 +11,8 @@ export default function Events() {
     const fetchEvents = async () => {
       try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/events`);
-        setEvents(res.data);
+      console.log("Fetched Events Data:", res.data);
+      setEvents(Array.isArray(res.data) ? res.data : res.data?.data || []);
       } catch (err) {
         setError("The spirits are blocking our vision... try again at witching hour");
         console.error("Event fetch error:", err);
